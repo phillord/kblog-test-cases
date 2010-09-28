@@ -1,0 +1,9 @@
+# -*- Makefile -*-
+
+
+
+BLOGPOSTOPTIONS=--attributes=categories
+
+
+include ../build/blogpost-inc
+

@@ -1,0 +1,43 @@
+Mathjax Test
+===========
+:blogpost-status: published
+:blogpost-categories: math-test
+
+Purpose of Test
+---------------
+
+Test to see if mathjax plugin is working as expected. 
+
+Pass Conditions
+---------------
+
+This is a simple equation using the double-dollar syntax:
+
+
+pass:[$$E=mc^2$$]
+
+
+Multiple syntax test
+
+[subs="none"]
+++++
+Short code:
+[latex]E=mc^2[/latex]
+
+<br/>
+
+Wp-latex:
+$latex E=mc^2$
+
+<br/>
+
+wp-latex with args:
+
+$latex E=mc^2&s=-1$ <br/>
+$latex E=mc^2&fg=002233$
+
+<br/>
+
+
+++++
+

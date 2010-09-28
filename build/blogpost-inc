@@ -1,0 +1,26 @@
+# -*- Makefile -*-
+
+SOURCES = $(shell echo *.adoc)
+TARGETS = $(filter-out *.blogpost,$(SOURCES:%.adoc=%.blogpost))
+
+BLOGPOST ?= /home/beta/bin/blogpost/blogpost.py
+
+
+.SUFFIXES:     .adoc .blogpost
+
+
+.adoc.blogpost:
+	## force status, although this is overriddable with BLOGPOSTOPTIONS
+	$(BLOGPOST) --attributes=status $(BLOGPOSTOPTIONS) --conf-file ../build/test-vm.conf post $<
+
+
+all: $(TARGETS) Makefile
+
+index:
+	cd ..;./build/extract_index.py > index.txt
+
+
+Makefile-generated: Makefile
+	../build/generate_makefile.py $(SOURCES) > Makefile-generated
+
+include Makefile-generated

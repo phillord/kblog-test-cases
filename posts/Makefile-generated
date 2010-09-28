@@ -1,0 +1,4 @@
+2010_03_25_simple_test.blogpost: 2010_03_25_simple_test.adoc
+2010_03_25_simple_test: 2010_03_25_simple_test.blogpost
+2010_06_16_doi_shortcode_test.blogpost: 2010_06_16_doi_shortcode_test.adoc
+2010_06_16_doi_shortcode_test: 2010_06_16_doi_shortcode_test.blogpost

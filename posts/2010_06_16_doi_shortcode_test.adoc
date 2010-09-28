@@ -1,0 +1,49 @@
+DOI Short Code Test
+===================
+:blogpost-status: published
+:blogpost-categories: reference-test
+
+Purpose of Test
+---------------
+
+Correct translation of DOI short codes into hyperlinks using DOI http proxy. 
+
+
+Pass Conditions
+---------------
+
+3 short-coded DOIs should be hyperlinked
+
+Test
+----
+
+Test 1
+~~~~~~
+
+This is the test DOI link that is being used. 
+
+http://dx.doi.org/10.1000/182
+
+No translation is involved
+
+Test 2
+~~~~~~
+
+Short code DOI on it a line of it's own. 
+
+++++
+[doi]10.1000/182[/doi]
+++++
+
+Test 3
+~~~~~~
+
+Short code DOI [doi]10.1000/182[/doi] integrated into a line. 
+
+
+Test 4
+~~~~~~
+
+Short code DOI at end of line. [doi]10.1000/182[/doi]
+
+
