@@ -3,15 +3,15 @@
 SOURCES = $(shell echo *.adoc)
 TARGETS = $(filter-out *.blogpost,$(SOURCES:%.adoc=%.blogpost))
 
-BLOGPOST ?= /home/beta/bin/blogpost/blogpost.py
+BLOGPOST = ~/bin/python/blogpost-google.hg/blogpost.py --asciidoc-opt '--conf-file ../build/journal-asciidoc.conf' -f ../build/local-test-vm.conf
+
 
 
 .SUFFIXES:     .adoc .blogpost
 
 
 .adoc.blogpost:
-	## force status, although this is overriddable with BLOGPOSTOPTIONS
-	$(BLOGPOST) --attributes=status $(BLOGPOSTOPTIONS) --conf-file ../build/test-vm.conf post $<
+	$(BLOGPOST) --mandatory-parameters=categories,status post $<
 
 
 all: $(TARGETS) Makefile

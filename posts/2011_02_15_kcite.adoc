@@ -1,0 +1,33 @@
+KCite Test
+==========
+:blogpost-status: published
+:blogpost-categories: kcite
+
+A big pass through block.
+
+
+DOI Citation:
+pass:[[cite\]10.3998/3336451.0009.101[/cite\]]
+
+PubMed Citation:
+New in PubMed pass:[[cite source='pubmed'\]21237295[/cite\]].
+
+This is a DOI in the middle of some text
+pass:[[cite\]10.2390/biecoll-jib-2010-116[/cite\]]. It should be
+interpreted too.
+
+This is a DOI that is a duplicate of another DOI:
+pass:[[cite\]10.3998/3336451.0009.101[/cite\]]. We need to make sure these are
+handled too.
+
+This DOI matches a citeproc example
+pass:[[cite\]10.1128/AEM.02396-09[/cite\]]. This one is a brand new paper, to
+test speed of resolution (published 7th Jan 2011)
+pass:[[cite\]10.1021/pr100990s[/cite\]].
+
+This is a test for the new style shortcode 
+pass:[[cite source='doi'\]10.3998/3336451.0009.101[/cite\]]. 
+
+And for Pubmed pass:[[cite source='pubmed'\]17237047[/cite\]]. And using the
+default (and a duplicate) pass:[[cite\]10.3998/3336451.0009.101[/cite\]].
+
