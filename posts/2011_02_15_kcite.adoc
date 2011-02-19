@@ -36,5 +36,5 @@ And for Pubmed pass:[[cite source='pubmed'\]17237047[/cite\]]. And using the
 default (and a duplicate) pass:[[cite\]10.3998/3336451.0009.101[/cite\]].
 
 Test with cito attribute -- currently ignored.
-pass:[[cite rel="cito:brilliant"\]doi:10.1371/journal.pone.0012258[/cite\]]
+pass:[[cite rel="cito:brilliant"\]10.1371/journal.pone.0012258[/cite\]]
 
