@@ -32,6 +32,9 @@ and Nuclease-Treated Samples pass:[[cite\]10.1021/pr100990s[/cite\]].
 This is a test for the new style shortcode. In google we trust again.
 pass:[[cite source='doi'\]10.3998/3336451.0009.101[/cite\]]. 
 
+Test with ISBN-13. Revolutioniziing knowledge discovery. Resolution currently
+not handled. pass:[[cite source="ISBN-13"\]978-0-387-48436-5[/cite\]]
+
 And for Pubmed pass:[[cite source='pubmed'\]17237047[/cite\]]. And using the
 default (and a duplicate) pass:[[cite\]10.3998/3336451.0009.101[/cite\]].
 
