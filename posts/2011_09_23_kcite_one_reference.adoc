@@ -1,0 +1,10 @@
+One Citation Kcite
+==================
+:blogpost-status: published
+:blogpost-categories: kcite
+
+
+A single citation to make life easier. 
+
+PubMed Citation: Proteomi analysis of the left ventricle
+New in PubMed pass:[[cite source='pubmed'\]21237295[/cite\]].

@@ -1,0 +1,16 @@
+Problem Identifiers for kcite
+=============================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+Here are a set of IDs which cause problems for kcite for one reason or
+another.
+
+Mikel's paper. Seems to return "null" for title. The equivalent works with a
+pubmed ID. 
+
+// pass:[[cite\]10.1186/1471-2105-8-57[/cite]]
+
+// This one errors at pubmed end
+pass:[[cite source="pubmed"\]21362543[/cite\]]
+pass:[[cite source="pubmed"\]21347273[/cite\]]

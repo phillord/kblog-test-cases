@@ -1,0 +1,26 @@
+Pmed and DOI
+============
+
+:blogpost-categories: kcite
+:blogpost-status: published
+
+This is a test to detect a specific problem. With the first citeproc version
+of kcite, doi's are working fine, but pmed IDs are showing identical
+citations. This *should* be a minimal example. 
+
+//pass:[[cite source="pubmed"\]21361458[/cite\]]
+//pass:[[cite source="pubmed"\]21361223[/cite\]]
+//pass:[[cite\]10.1093/nar/gkl799[/cite\]]
+
+
+These citations should be the same as kcite_test.html which works. 
+
+
+pass:[[cite\]10.3998/3336451.0009.101[/cite\]]
+pass:[[cite source="pubmed"\]17683567[/cite\]]
+pass:[[cite source="pubmed"\]17311682[/cite]]
+
+
+
+
+
