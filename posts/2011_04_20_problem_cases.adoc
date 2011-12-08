@@ -14,3 +14,12 @@ pubmed ID.
 // This one errors at pubmed end
 pass:[[cite source="pubmed"\]21362543[/cite\]]
 pass:[[cite source="pubmed"\]21347273[/cite\]]
+
+
+This one seems to return null for the title also
+pass:[[cite\]10.1186/gb-2003-4-4-r28[/cite\]]
+Same thing in pubmed. pass:[[cite source="pubmed"\]12702209[/cite\]]
+
+
+This one was reported as failing my Carl Boettiger
+pass:[[cite\]10.1126/science.1203698[/cite\]]. 
