@@ -23,3 +23,7 @@ Same thing in pubmed. pass:[[cite source="pubmed"\]12702209[/cite\]]
 
 This one was reported as failing my Carl Boettiger
 pass:[[cite\]10.1126/science.1203698[/cite\]]. 
+
+
+This one is my own reality paper [cite]10.1371/journal.pone.0012258[/cite].
+Currently authors are being shown to include Iddo Friedberg. 
