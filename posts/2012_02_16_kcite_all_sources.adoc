@@ -1,0 +1,19 @@
+KCite all sources
+=================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+
+Something from every source. 
+
+DOI Citation: In Google we trust.
+pass:[[cite\]10.3998/3336451.0009.101[/cite\]]
+
+PubMed Citation: Proteomi analysis of the left ventricle
+New in PubMed pass:[[cite source='pubmed'\]21237295[/cite\]].
+
+ArXiv: On estimation and selection for topic models pass:[[cite
+source='arxiv'\]1109.4518[/cite\]].
+
+This cite should be about Genomic data from Emperor penguin. 
+pass:[[cite\]10.5524/100005[/cite\]]

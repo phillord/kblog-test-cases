@@ -1,0 +1,30 @@
+Longer test for arxiv
+====================
+:blogpost-status: published
+:blogpost-categories: kcite
+
+
+ArXiv: On estimation and selection for topic models pass:[[cite
+source='arxiv'\]1109.4518[/cite\]].
+
+Object Re-Use &amp; Exchange: A Resource-Centric Approach
+pass:[[cite source="arxiv"\]0804.2273[/cite\]]
+
+pass:[[cite source="arxiv"\]1201.0006[/cite\]]
+pass:[[cite source="arxiv"\]1201.0033[/cite\]]
+pass:[[cite source="arxiv"\]1201.0036[/cite\]]
+pass:[[cite source="arxiv"\]1201.0038[/cite\]]
+pass:[[cite source="arxiv"\]1201.0039[/cite\]]
+pass:[[cite source="arxiv"\]1201.0042[/cite\]]
+pass:[[cite source="arxiv"\]1201.0044[/cite\]]
+pass:[[cite source="arxiv"\]1201.0045[/cite\]]
+pass:[[cite source="arxiv"\]1201.0065[/cite\]]
+pass:[[cite source="arxiv"\]1201.0069[/cite\]]
+pass:[[cite source="arxiv"\]1201.0085[/cite\]]
+pass:[[cite source="arxiv"\]1201.0091[/cite\]]
+pass:[[cite source="arxiv"\]1201.0092[/cite\]]
+pass:[[cite source="arxiv"\]1201.0103[/cite\]]
+pass:[[cite source="arxiv"\]1201.0104[/cite\]]
+pass:[[cite source="arxiv"\]1201.0109[/cite\]]
+pass:[[cite source="arxiv"\]1201.0116[/cite\]]
+pass:[[cite source="arxiv"\]1201.0133[/cite\]]

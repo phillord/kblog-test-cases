@@ -1,0 +1,103 @@
+Adding a little reality to the building of biological Ontologies
+================================================================
+:blogpost-categories: exemplars, kcite
+:blogpost-status: published
+
+== Abstract
+
+Background: Many areas of biology are open to mathematical and computational
+modelling. The application of discrete, logical formalisms defines the field
+of biomedical ontologies. Ontologies have been put to many uses in
+bioinformatics. The most widespread is for description of entities about which
+data have been collected, allowing integration and analysis across multiple
+resources. There are now over 60 ontologies in active use, increasingly
+developed as large, international collaborations.
+
+There are, however, many opinions on how ontologies should be authored; that
+is, what is appropriate for representation. Recently, a common opinion has
+been the “realist” approach that places restrictions upon the style of
+modelling considered to be appropriate.
+
+Methodology/Principle Findings: Here, we use a number of case studies for
+describing the results of biological experiments. We investigate the ways in
+which these could be represented using both realist and non-realist
+approaches; we consider the limitations and advantages of each of these
+models.
+
+Conclusions/Significance: From our analysis, we conclude that while realist
+principles may enable straight-forward modelling for some topics, there are
+crucial aspects of science and the phenomena it studies that do not fit into
+this approach; realism appears to be over-simplistic which, perversely,
+results in overly complex ontological models. We suggest that it is impossible
+to avoid compromise in modelling ontology; a clearer understanding of these
+compromises will better enable appropriate modelling, fulfilling the many
+needs for discrete mathematical models within computational biology.
+Introduction
+
+
+== Authors
+
+Phillip Lord, Newcastle University
+Robert Stevens, University of Manchester
+
+== Introduction
+
+Ontologies are now widely used for describing and enhancing biological
+resources and biological data, largely following on from the success of the
+Gene Ontology [cite source="pubmed"]10802651[/cite]. Ontologies have been used
+for many purposes, from schema integration to value reconcilliation to query
+interfaces [2]. Ontologies have also become a cornerstone of computational
+biology and bioinformatics. As computationally amenable artifacts they are,
+themselves, a direct part of computational biology; many computational
+biologists are involved in their production and maintenance. Many more use
+ontologies to summarise their data, often by looking for over-representation
+[cite]10.1186/gb-2003-4-4-r28[/cite], as the basis for drawing computational
+inferences about data [cite]10.1093/bioinformatics/btl208[/cite], or as the basis for determining semantic similarity
+[cite source="pubmed"]12835272[/cite]. Even those not making direct computational use of ontologies are likely
+to come into contact with them, for example, when preparing annotation as part
+of their data release [cite source="pubmed"]16428806[/cite].
+
+It is, therefore, of vital interest to computational biologists that
+ontologies for use within biomedicine are fit for purpose. One effort that
+aims to increase the quality of the ontologies available within biomedicine is
+the “OBO Foundry” [cite source="pubmed"]17989687[/cite]. The main tool that it
+uses for this is “an evolving set of shared principles governing ontology
+development”. The initial eleven principles of the OBO Foundry [8] were
+largely concerned with what might be termed ‘good engineering practice’
+(ontologies must, for example, be openly available, with a common syntax, well
+documented, and used). These principles have later been joined by a further
+eleven [9]; these include principles such as “textual definitions will use the
+genus-species form”, “Use of Basic Formal Ontology” and, the somewhat
+quixotic, “terms […] should correspond to instances in reality”. These stem
+not from engineering practice, but from a perspective called realism.
+
+The many different uses for ontologies that we have described are reflected in
+different understandings and methodologies about how and what to represent in
+an ontology. Over the last few years, for many uses the paradigm has moved
+from “a conceptualization of the application domain” toward “a description of
+the key entities in reality”; it is this latter approach that defines realism
+[cite]10.1016/j.jbi.2005.08.005[/cite]. This approach to ontology is typified by the Basic Formal Ontology
+(BFO); a small upper-ontology for use within science in general and biomedical
+ontology building in particular [cite source="pubmed"]15853262[/cite].
+
+There has been significant discussion regarding the possibility of
+representing only “real entities” in computational ontologies [12]. Likewise,
+there has been significant discussion about the philosophy surrounding realism
+and the role of ontology in its representation
+[cite]10.1016/j.jbi.2005.08.005[/cite]. While it is argued by
+some that it is possible to represent only reality when making a domain
+description, there has, however, been little discussion on whether it is
+necessarily desirable to do so.
+
+In this paper, we consider the implications that realism has for the choices
+that are open to the ontologist while they are modelling their domain of
+interest. In particular, we consider the implications that this has for the
+computational capabilities of any resultant ontology, in terms of its ability
+to represent scientific knowledge in a computationally amenable form, as well
+as the ability to perform automated inference or statistics over this
+knowledge. We suggest that the application of realism results in ontologies
+that are over-complex, awkward or limited; as such, realism falls far short of
+its aim of increasing the fitness-for-purpose of ontologies. This approach,
+therefore, is unlikely to fulfil the needs of computational biologists whom
+form a substantial part of both the user and developer community for
+bio-ontologies.

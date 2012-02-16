@@ -1,0 +1,27 @@
+Two Problematic DOIs from Carl Boettiger
+========================================
+:blogpost-status: published
+:blogpost-categories: kcite
+
+
+
+Seeing the forest for the trees. Should text-cite as Losos, 2011. 
+pass:[[cite\]10.1086/660020[/cite\]].
+
+Early burst of body size... Should cite as text cite Harmon et al, 2010. 
+pass:[[cite\]10.1111/j.1558-5646.2010.01025.x[/cite\]].
+
+
+The problem seems to be caused by citeproc-js. If this line
+
+[source,javascript]
+----
+{"family":"Losos","given":"Jonathan B."}
+----
+
+is in the citeproc data, then it all fails. If it's not, then it works. Need a
+citeproc test bed, I fear, since I am getting no error messages at all. Come
+to think of it, I should address the "not checking for errors messages" in
+kcite-citeproc.js. 
+
+

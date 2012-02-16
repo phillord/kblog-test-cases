@@ -1,0 +1,12 @@
+DataCite DOI
+============
+:blogpost-categories: kcite
+:blogpost-status: published
+
+Datacite DOIs are supposed to parse out now, according to 
+http://datacite.wordpress.com/2012/02/03/datacite-search-part-2/[this]
+report.
+
+
+This cite should be about Genomic data from Emperor penguin. 
+pass:[[cite\]10.5524/100005[/cite\]]

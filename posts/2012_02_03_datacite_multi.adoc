@@ -1,0 +1,39 @@
+Datacite Multi DOI
+==================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+A bunch of DOIs pulled from http://search.datacite.org/ui[].
+
+
+Video survey of pre-drilled seabed of Expedition 310
+pass:[[cite\]10.1594/PANGAEA.527932[/cite\]] Dataset : Dataset
+Expedition 310 Scientists
+Smith, Dave
+# 2
+Biogenic Silica at niskin bottle station RSBP1995/1996-122295-12
+pass:[[cite\]10.1594/PANGAEA.140590[/cite\]] Dataset : Dataset
+Gurvich, Evgeny G • Isaeva, Alexandra B • Dyomina, LV • Levitan, Mikhail A • Muravyov, KG
+Smith, Walker O Jr
+# 3
+Biogenic Silica at niskin bottle station RSBP1995/1996-122395-01
+pass:[[cite\]10.1594/PANGAEA.140591[/cite\]] Dataset : Dataset
+Gurvich, Evgeny G • Isaeva, Alexandra B • Dyomina, LV • Levitan, Mikhail A • Muravyov, KG
+Smith, Walker O Jr
+# 4
+The Nailsea Glassworks, Nailsea, North Somerset: A Study of the History, Archaeology, Technology and the Human Story [version 1]
+pass:[[cite\]10.5284/1000238[/cite\]] Text : Archive
+Smith, Andrew F.
+Smith, Andrew F. Smith, Andrew F.
+# 5
+Spatial Scaling of Soil Moisture, Evapotranspiration, and Leakage [version 1]
+pass:[[cite\]10.4122/1.1000000563[/cite\]] Event : Conference presentation
+Puma, Michael • Celia, Michael • Rodriguez-Iturbe, Ignacio • Nordbotten, Jan • Guswa, Andrew • (et. al.)
+Smith College
+
+
+And some from kblog which break...
+pass:[[cite\]10.4124/A3[/cite\]] = http://ontogenesis.knowledgeblog.org/
+pass:[[cite\]10.4124/A425[/cite\]]
+pass:[[cite\]10.4124/A426[/cite\]]
+

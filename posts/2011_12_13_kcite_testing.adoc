@@ -1,0 +1,9 @@
+Kcite Testing
+=============
+:blogpost-status: published
+:blogpost-categories: kcite
+
+
+
+This one is my own reality paper pass:[[cite\]10.1371/journal.pone.0012258[/cite]].
+Currently authors are being shown to include Iddo Friedberg. 
