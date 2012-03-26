@@ -1,0 +1,18 @@
+One DOI with Bear URL
+=====================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+
+Here is a bear URL to the DOI handbook. 
+
+HERE COMES THE URL:
+
+pass::[http://dx.doi.org/10.1000/182]
+
+:THERE IT WAS!
+
+
+And as proper cite tag. 
+
+pass:[[cite\]10.1000/182[/cite\]]
