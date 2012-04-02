@@ -1,0 +1,8 @@
+This is not a URI
+=================
+:blogpost-status: published
+:blogpost-categories: kcite
+:url-viewed: 2012-03-22
+
+This test should show a failure when accessing Greycite as this
+kurl:/not_a_uri[] is not a URI, while kurl:www.russet.org.uk[] is.

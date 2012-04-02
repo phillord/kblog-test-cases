@@ -1,0 +1,10 @@
+Kblog Multiple Authors
+======================
+:blogpost-status: published
+:blogpost-categories: authors
+
+
+This post should contain a number of individual authors. Currently, we have
+[author]Phillip Lord[/author] and [author]Lindsay Marshall[/author]. And now
+we have [author]Simon Cockell[/author] which makes three, and finally
+[author]Robert Stevens[/author]. And another [author]John Smith[/author].

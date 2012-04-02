@@ -1,0 +1,36 @@
+Metadata Hall of Shame
+======================
+:blogpost-status: published
+:blogpost-categories: kcite
+
+
+This is my metadata hall of shame. It is a list of links to various websites,
+categorised by whether we can use greycite to refer to them or not. With
+typical arrogance, I will assume that anything that doesn't work is because
+there is not metadata. 
+
+
+== Saints
+
+This is me, with a problem DOI
+kurl:www.russet.org.uk/blog/2012/03/a-problem-doi[]. This is Simon Cockell
+with an advert kurl:blog.fuzzierlogic.com/archives/494[]. This is Robert
+Stevens and an article about Unicorns
+kurl:robertdavidstevens.wordpress.com/2011/05/26/unicorns-in-my-ontology[]. 
+Steve Homans on the importance of PDRs kurl:stevehomans.wordpress.com/2012/03/28/pdr/[]
+
+
+== Sinners
+
+This is crosstech and an article about content negotiation
+kurl:www.crossref.org/CrossTech/2011/04/content_negotiation_for_crossr.html[]. 
+This is the BBC news about a fuel strike thread
+kurl:www.bbc.co.uk/news/uk-17533151[]. This is a post on PLoS Blogs
+kurl:blogs.plos.org/mfenner/2011/11/08/why-bibtex-ris-and-endnote-xml-will-soon-be-broken/[]. 
+
+
+This is using greycite over a DOI that doesn't work.
+kurl:dx.doi.org/10.2390/biecoll-jib-2010-116[] either. This is a greycite
+citation to my reality paper which does work by DOI
+kurl:dx.doi.org/10.1371/journal.pone.0012258[].
+

@@ -1,0 +1,18 @@
+Knowledgeblog URIs
+==================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+
+Do cyclists pay tax, by Phillip Lord
+kurl:ontogenesis.knowledgeblog.org/1062[]. Process and properties by Colin
+Batchelor kurl:bio-ontologies.knowledgeblog.org/143[].
+
+Caloha by Paula Duek kurl:bio-ontologies.knowledgeblog.org/196[]. Volcano
+plots of microarray data
+kurl:bioinformatics.knowledgeblog.org/2011/06/21/volcano-plots-of-microarray-data/[].
+Bayesian Networking kurl:health.knowledgeblog.org/2011/05/17/bayesian-network-modelling-of-factors-influencing-the-development-of-obesity[]
+
+And another to Crossref kurl:www.crossref.org/CrossTech/2011/10/datacite_supporting_content_ne.html[].
+
+Here is a test kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[]

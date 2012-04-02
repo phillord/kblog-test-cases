@@ -1,0 +1,82 @@
+Kblog Metadata
+==============
+:blogpost-categories: tech
+:blogpost-status: published
+
+
+*THIS IS A TEST EXEMPLAR POST. THE REAL VERSION IN ON MY BLOG*
+
+Previously, I described the additions that we have made to the kcite plugin
+kurl:www.russet.org.uk/blog/2012/02/kcite-spreads-its-wings/[], which now
+supports multiple different types of identifiers. This includes the subset of
+DOIs kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[] that come
+from either CrossRef kurl:www.crossref.org[] or DataCite
+kurl:www.datacite.org[], arXiv kurl:arxiv.org/[] or Pubmed
+kurl:www.ncbi.nlm.nih.gov/pubmed/[]. However, rather embarrasingly, one of the
+identifiers that we do not support well are URLs. Slightly ironic as one of
+the purposes behind
+kurl:www.russet.org.uk/blog/2011/06/ontogenesis-knowledgeblog-lightweight-semantic-publishing/[]
+is to demonstrate that it is possible to replicate the publication experience
+using the web. 
+
+The main reason for this is the lack of an active source of metadata. The
+various identifiers that we have supported all come with a standardised source
+of metadata, which is not so straightforward with a generic URL. This is one
+of the reasons for my new plugin, kblog-metadata. This currently consists of
+three pieces of functionality: kblog-headers, kblog-authors and
+kblog-table-of-contents. 
+
+For a long time now, I have added COinS metadata kurl:ocoins.info/[] to both
+this blog and kblog kurl:www.knowledgeblog.org/[]. But, from my perspective,
+COinS is a dreadful specification. It involves embedding a NISO 1.0 Context
+Object kurl:www.niso.org/standards/standard_detail.cfm?std_id=783[] into a
+span tag. The reference here is from the COinS specification
+kurl:ocoins.info/[], but is, unfortunately 404 at the time of writing. It uses
+a URL encoded query string -- in short, a microsyntax inside HTML which needs
+it's own independent parsing. Key strings are confusing at best (+rft_val_fmt+
+and +rft.auinit+ for example -- why both underscores and dots?). And there is
+a degree of randomness about things: first authors can be split into first
+name, last name, initials, while subsequent authors cannot. More over, I
+could not find a processor to test whether my COinS implementation was
+actually correct. I wanted something that was a bit easier, and also in
+wider use. So, while we still use COinS metadata, we have now also added +meta+
+tags as recommended by Google Scholar
+kurl:scholar.google.com/intl/en/scholar/inclusion.html[]; ironically, on a
+page with, as far as I can see, no +meta+ tags at all. Finally, we also have
+Open Graph Protocol kurl:ogp.me/[]. Fortunately their website does use their
+own advice. Kblog-headers includes all of these formats, as can now be seen on
+this page. 
+
+Since the inception of Kblog, one of the difficulties we have had is with
+multiple authors. When adding metadata, for instance, we need to ensure that
+all the authors are represented. We have used plugins such as co-authors-plus
+kurl:wordpress.org/extend/plugins/co-authors-plus/[] to enable multi-author
+work. However, these plugins come with a lot of extra baggage, namely the
+requirement for all authors to have a Wordpress login (either Wordpress.com,
+or on the local installation). Essentially, aside from the first workshop
+kurl:www.russet.org.uk/blog/2010/01/the-ontogenesis-tutorial/[], we have never
+seen anyone collaboratively edit documents on Wordpress. Where multiple
+authors have worked together (which we have seen a lot) they have done so
+using Word, LaTeX, Google docs or asciidoc, collaborating with DropBox or
+email. Only the communicating author needs an account. The problem was
+accentuated with sites like kurl:bio-ontologies.knowledgeblog.org/[], where
+all of the articles were *posted* by either myself or Simon Cockell
+kurl:fuzzierlogic.com/[], but were *authored* by neither. From my perspective,
+we need the ability to separate these two roles -- posting and authoring.
+Kblog-authors achieves precisely this. New authors can be added either using
+short codes within the document content, or through the Wordpress edit page
+(the GUI is a little primitive, but functional). These authors do not need
+Wordpress accounts, with the posting account being used if no authors are
+explicitly given.
+
+Finally, I have rewritten kblog-table-of-contents, and am combining it with
+kblog-metadata. This provides a new shortcode &#91;kblog-toc&#93; which
+can be used to embed a table of contents showing all posts -- ideal for
+searching over. For more computational use it is also possible to get a line
+separate text file (http://www.russet.org.uk/?kblog-toc=txt) or approximately
+the same thing as HTML (http://www.russet.org.uk/?kblog-toc=html), which can
+be cut and paste without having to view source. 
+
+All three of these plugins require further work. At the moment, they provide
+better metadata, but they do not give the author and reader enough utility to
+encourage people to install them. More on this in future. 

@@ -1,0 +1,460 @@
+DOIs and Content Negotiation
+============================
+:blogpost-status: published
+:blogpost-categories: kcite,exemplars
+:url-viewed: 2012-04-08
+
+This is a test. Main version is on my blog. 
+
+With the release of Kcite 1.5 kurl:wordpress.org/extend/plugins/kcite/[], we
+now support multiple forms of citation
+kurl:www.russet.org.uk/blog/2012/02/kcite-spreads-its-wings/[]. There have
+also been some changes to the implementation layer, however, that I will
+describe in this article. I have previously written critically about DOIs and
+their problems kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[].
+One of my criticisms is the inability to access metadata about a DOI in a
+standardised way. In this article, I will consider the addition of content
+negotiation and whether this improves the situation. From this, I will draw a
+number of xref:conclusions[conclusions] about the DOI system. 
+
+== Background
+
+DOIs offer a single point of entry mechanism for refering to a paper. A DOI
+such as "10.1371/journal.pone.0012258" refers to one of my papers
+doi:10.1371/journal.pone.0012258[]. It can be transformed into a URL by the
+additional of http://dx.doi.org to the front, giving
+http://dx.doi.org/10.1371/journal.pone.0012258. The DOI proxy service takes
+this URL and redirects the user to the "real" URL which contains the content
+in question. DOIs themselves are assigned by a registration agency. The
+majority of DOIs that refer to academic papers have been assigned by CrossRef
+kurl:www.crossref.org[]. However, they are not the only registration agency --
+DataCite provides a similar service for, intuitively enough, data sets
+kurl:www.datacite.org[]. The actual content -- the papers or the data sets --
+are stored elsewhere. Both DataCite and CrossRef simply forward the user of
+these URLs to the publisher or data repository.
+
+Our previous article
+kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[], discussed a
+number of problems including the difficulty in accessing metadata about a
+given DOI. As well as being an issue of general concern, it is also a specific
+problem for the development of Kcite kurl:knowledgeblog.org/kcite-plugin[].
+This wordpress plugin generates reference lists from identifiers, including
+DOIs; it is active on this article. To do this, it captures metadata about
+each reference from a variety of different metadata servers. 
+
+CrossRef have recently announced the addition of Content Negotiation to their
+list of services
+kurl:www.crossref.org/CrossTech/2011/04/content_negotiation_for_crossr.html[].
+This provides a mechanism to access metadata about a DOI, at least for those
+DOIs where CrossRef is the registration agency. This mechanism became more
+attractive with the announcement that it is now also supported by datacite
+kurl:www.crossref.org/CrossTech/2011/10/datacite_supporting_content_ne.html[].
+Finally, partly following a request of mine, CrossRef also now releases its
+metadata in JSON
+kurl:www.crossref.org/CrossTech/2011/11/turning_dois_into_formatted_ci.html[]
+ready for Citeproc-js kurl:bitbucket.org/fbennett/citeproc-js[]. This
+format is used internally by Kcite, which required parsing from CrossRef
+unixref XML. Retrieving JSON directly had obvious advantages. 
+
+== Accessing the metadata
+
+Here, I describe the implementation of content negotiation for Kcite. The
+complete source of Kcite is available from Mercurial although not all of the
+changes described here were checked in
+kurl:code.google.com/p/knowledgeblog/source/browse/trunk/plugins/kcite/kcite.php[]. 
+
+My original implementation for gathering CrossRef metadata used the
++file_get_contents+ method in PHP. Despite its name, this also works with
+URLs, providing a simple and straight-forward implementation path. 
+
+[source,php]
+----
+   $url = "http://www.crossref.org/openurl/?noredirect=true&pid="
+            .$crossref."&format=unixref&id=doi:".$cite->identifier;
+   $xml = file_get_contents($url, 0);
+----
+
+There are a number of issues with this implementation, not least the lack of
+any significant error handling. More over, the +file_get_contents+ is not very
+adaptable; it performs a simple HTTP GET request. So, I decided to use PHP
++libcurl+ kurl:php.net/manual/en/book.curl.php[]. The translation from
++file_get_contents+ is reasonably straight-forward. 
+ 
+
+[source,php]
+----
+      $url = "http://dx.doi.org/{$cite->identifier}";
+      $ch = curl_init();
+      curl_setopt ($ch, CURLOPT_URL, $url );
+      $response = curl_exec ($ch);
+
+      curl_close($ch);
+----
+
+Initially this failed to work. I normally build and test my code on Ubuntu
+and, unfortunately, PHP libcurl is not installed with either Wordpress, PHP or
+Apache. A search and +aptitude install+ solve this problem. Now strange things
+happen. It turns out that the default behaviour of +libcurl+ is to embed the
+retrieved content into the output -- that is the outgoing web page. So, I
+need to add an option to the +libcurl+ calls. 
+
+[source,php]
+----
+      $url = "http://dx.doi.org/{$cite->identifier}";
+          
+      // get the metadata with negotiation
+      $ch = curl_init();
+      curl_setopt ($ch, CURLOPT_URL, $url );
+      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true );     
+----
+
+The code was still not working, and nothing appears to be returned though.
+Debugging a black box is never easy, so I need to get more information before
+going further. So, I added code to dump curl verbose information to a log file. 
+
+
+[source,php]
+----
+      // debug
+      $fh = fopen('/tmp/curl.log', 'w'); 
+      curl_setopt($ch, CURLOPT_STDERR, $fh );
+      curl_setopt($ch, CURLOPT_VERBOSE, true );
+----
+
+A quick perusal of the HTTP requests show the problem. By default, a call to
+http://dx.doi.org returns a +303 See Other+ response. By default, +libcurl+
+does not follow this. Another command line option is required to fix this. 
+      
+[source,php]
+----
+      $ch = curl_init();
+      curl_setopt ($ch, CURLOPT_URL, $url );
+      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true );
+      curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, true );
+----
+
+Finally, we need to use content negotiation. The PHP +libcurl+ library does
+not support this directly, so we need to set the HTTP headers for ourselves.
+
+[source,php]
+----
+        curl_setopt ($ch, CURLOPT_HTTPHEADER,
+                   array (
+                          "Accept: application/citeproc+json;q=1.0"
+                           ));
+----
+
+And I now have a solution. Kcite needed reworking, but mostly this involved
+removing the XML parsing layer, all was looking good. Except that while
+looking through my regression tests, I found that DataCite support has been
+broken. I was, at that time, accessing DataCite using a different interface.
+
+[source,php]
+----
+    $url = "http://data.datacite.org/application/x-datacite+xml/"
+         . $cite->identifier;
+----
+
+
+The difficulty was that previously I was accessing CrossRef directly to
+resolve DOIs. Asking CrossRef about a Datacite DOI resulted in an unknown DOI
+response. Kcite resonded to this response by trying DataCite next;
+unfortunately, there is no way that I know of to distinguish syntactically a
+DataCite and CrossRef DOI. With the new method, the content negotiated call to
+http://dx.doi.org[] succeeds, although DataCite does not know of the requested
++citeproc+json+ MIME type, so returns HTML. So, again, we need to extend the
+our DOI resolution, checking for the returned content type.
+
+[source,php]
+----
+      $response = curl_exec ($ch);
+      $status = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+      $contenttype = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+      
+      // it's probably not a DOI at all. Need to check some more here. 
+      if( curl_errno( $ch ) == 404 ){
+          curl_close($ch);
+          return $cite;
+      }            
+
+      curl_close ($ch);
+                
+
+      if( $contenttype == "application/citeproc+json" ){
+          // crossref DOI
+          //kcite specific logic follows. 
+      }
+----
+
+I should now be able to achieve a single call to resolve a DOI by modifying
+the headers once again. Here we request +citeproc+json+ if possible or
++x-datacite+xml+ if it is not. 
+
+[source,php]
+----
+    curl_setopt ($ch, CURLOPT_HTTPHEADER,
+               array (
+                     Accept: application/citeproc+json;q=1.0, application/x-datacite+xml;q=0.9
+                          ));
+
+----
+
+Unfortunately this fails also. While CrossRef returns +citeproc+json+,
+DataCite still returns HTML. Discussions with Karl Ward from CrossRef cleared
+up the problem. The content negotiation implementation of both CrossRef and
+DataCite was imperfect. DataCite's implementation always tried to return the
+first content type; but it doesn't know about +citeproc+json+, hence the HTML.
+Meanwhile CrossRef returns only the highest q value, rather than all types.
+Ironically, the problem was solved by doing this:
+
+[source,php]
+----
+
+    curl_setopt ($ch, CURLOPT_HTTPHEADER,
+               array (
+                     Accept: application/x-datacite+xml;q=0.9, application/citeproc+json;q=1.0
+                          ));
+
+----
+
+Crossref now returns JSON (because it has the highest q value), while datacite
+returns XML because it comes first. The final, complete and functioning method
+now appears as follows:
+
+
+[source,php]
+----
+      $url = "http://dx.doi.org/{$cite->identifier}";
+          
+      // get the metadata with negotiation
+      $ch = curl_init();
+      curl_setopt ($ch, CURLOPT_URL, $url );
+      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true );
+      curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, true );
+
+
+      // the order here is important, as both datacite and crossrefs content negotiation is broken. 
+      // crossref only return the highest match, but do check other content
+      // types. So, should return json. Datacite is broken, so only return the first
+      // content type, which should be XML.
+      curl_setopt ($ch, CURLOPT_HTTPHEADER,
+                   array (
+                          "Accept: application/x-datacite+xml;q=0.9, application/citeproc+json;q=1.0"
+                          ));
+      
+      // debug
+      //$fh = fopen('/tmp/curl.log', 'w'); 
+      //curl_setopt($ch, CURLOPT_STDERR, $fh );
+      //curl_setopt($ch, CURLOPT_VERBOSE, true );
+      
+      $response = curl_exec ($ch);
+      $status = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+      $contenttype = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+      // it's probably not a DOI at all. Need to check some more here. 
+      if( curl_errno( $ch ) == 404 ){
+          curl_close($ch);
+          return $cite;
+      }            
+
+      curl_close ($ch);
+                
+
+      if( $contenttype == "application/citeproc+json" ){
+           // crossref DOI
+           // kcite application logic
+      }
+              
+      if( $contenttype == "application/x-datacite+xml" ){
+          //datacite DOI
+          // kcite application logic
+      }
+----
+
+== Using the metadata
+
+Although we now have a single point of entry for accessing the metadata about
+a DOI, the metadata itself is still not standardised. Although CrossRef has
+returned metadata in (nearly!) the form that we are going to use, DataCite has
+returned XML conforming to their own schema. We still need to parse this XML.
+Fortunately, this is relatively easy in PHP, using the +SimpleXMLElement+
+class and xpath. The full code is available, so here I just show the sections
+involving xpath, for example, to retrieve the publisher and the title. 
+
+[source,php]
+----
+    $journalN = $article->xpath( "//publisher"); 
+    $titleN = $article->xpath( "//title" );
+----
+
+Initial testing suggested this works, sometimes. Unfortunately, I discovered
+that this failed for some DataCite DOIs. More solicitous debugging shows the
+problem; DataCite returns more than one form of XML. At first sight, the xpath
+should work, since the relevant elements are still in the same place. However,
+the default namespaces have changed -- DataCite kernel 2.0 XML does not have a
+default namespace, while 2.1 and 2.2 do, which breaks the xpath. The situation
+is resolved by searching for namespaces, then parameterising the xpath
+queries.
+
+
+[source,php]
+----
+       $namespaceN = $article->getNamespaces();
+       $kn = "";
+       if( $namespaceN[ "" ] == "http://datacite.org/schema/kernel-2.2" ){
+           $kn = "kn:";
+           $article->registerXpathNamespace( "kn", "http://datacite.org/schema/kernel-2.2" );
+       }
+       
+       if( $namespaceN[ "" ] == null ){
+           // kernel 2.0 -- no namespace
+           // so do nothing.
+       }
+       
+      $journalN = $article->xpath( "//${kn}publisher"); 
+      $titleN = $article->xpath( "//${kn}title" );
+----
+
+I now have a system capable of gathering bibliographic metadata from a DOI. 
+
+== Discussion
+
+In our original post
+kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[], we compared the
+situation with bioinformatics identifiers to DOIs. A Uniprot ID, for instance,
+such as http://www.uniprot.org/uniprot/P08100, resolves to a protein record
+while http://www.uniprot.org/uniprot/P08100.fasta returns the equivalent
+protein sequence. Content negotiation offers the possibility of achieving
+something similar with DOIs, at least with respect to the metadata if not the
+actual content.  
+
+My experience in practice shows that content negotiation does work and is
+useful, however, I am unconvinced that it is an ideal solution. From a
+theoretical stand point, the use of +Accept+ headers seems nice. But in
+practice, it is painful because it is not commonly used. PHP does not support
+it, while even PHP with +libcurl+ support requires me to set headers by hand,
+as there are no standard methods for doing so. Likewise, with +curl+ on the
+command line, as shown in this example from CrossRef
+kurl:www.crossref.org/CrossTech/2011/04/content_negotiation_for_crossr.html[]
+which retrieves RDF metadata. 
+
+----
+curl -D - -L -H   "Accept: application/rdf+xml" "http://dx.doi.org/10.1126/science.1157784" 
+----
+
+I would expect a similar experience within Perl, Python or Java; the tools of
+choice for a bioinformatician. I cannot email people a link to the metadata
+for a paper; I have no idea how you could access the RDF if you were using a
+desktop browser, or on a phone. From a personal perspective, I much prefer
+the approach offered by DataCite which uses URLs of the form
+http://data.datacite.org/application/x-datacite+xml/10.5524/100005 which is
+genomic data about Emperor Penguins doi:10.5524/100005[]. Content negotiation
+is hard work because although it is standard, being part of the HTTP
+specification, it is not common. The fact that neither DataCite nor CrossRef
+got their implementation right suggests to me that these are not my problems
+alone.
+
+Of course, the DataCite approach is limited to DataCite DOIs, so
+http://data.datacite.org/application/x-datacite+xml/10.1371/journal.pone.0012258
+returns a failure message. However, this mechanism implemented at
+http://dx.doi.org would add a valuable and additional interface; it is
+actually very easy to implement, with a simple call to the content negotiated
+stack; a form of the PHP described in this post would perform the task well.
+
+My original criticisms of DOIs included the enormous variety of entities that
+DOIs actually resolve to: the article in HTML or PDF, an abstract and a
+picture, author biographies, or an image of a print out of the front page
+kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[]. Unfortunately,
+the experience is replicated at the metadata level. With two registration
+agencies, I have to deal with 4 different types of schema, although I am
+grateful to CrossRef to adding support for the one that I wanted. If I can
+managed to do an, admittedly, half-hearted job at integrating this data by
+blackbox resolution of a set of DOIs, it would be nice if the International
+DOI Foundation could do the job for me. Failing this, a single point of entry
+to the documentation for the different registration agencies would help. 
+
+Finally, the fact that DOIs provide a single, unified identifier at the
+metadata level turns out to be a disadvantage. There is, in reality, no such
+thing as a DOI; there are multiple different types of DOI. KCite supports two
+of them, that is CrossRef DOIs and DataCite DOIs. But there are 8 registration
+agencies kurl:www.doi.org/registration_agencies.html[]. It is, therefore,
+not possible to know what content types if any will be returned before hand.
+
+The more general problem is for a given DOI, to my knowledge, there is no way
+of knowing which registration agency is responsible, at least not at the level
+of a http://dx.doi.org URI (at the Handle level there must be, or the system
+would not work). For the average user, therefore, there is no way of knowing
+who is responsible for a given DOI. Strictly, this is true for a URL also. But
+if http://www.uniprot.org/uniprot/OPSD_HUMAN fails to resolve as I think it
+should do, there are a number of steps I can take. I can email
+webmaster@uniprot.org. I can browse from http://www.uniprot.org looking for a
+contact. I can type +whois uniprot.org+. For a DOI, I have none of these tools
+(or rather everything points to the International DOI Foundation). 
+
+This problem was exemplified a few days after completing the work on KCite
+described here. I noticed that PDB has DOIs for its records, which should have
+worked with KCite. However, they were failing to resolve. Consider this
+(elided) output from +curl+.
+
+----
+> curl -D - "http://dx.doi.org/10.2210/pdb3cap/pdb"
+HTTP/1.1 303 See Other
+Server: Apache-Coyote/1.1
+Location: ftp://ftp.wwpdb.org/pub/pdb/data/structures/divided/pdb/ca/pdb3cap.ent.gz
+
+
+> curl -D - -L -H  "Accept: application/citeproc+json" "http://dx.doi.org/10.2210/pdb3cap/pdb"
+HTTP/1.1 303 See Other
+Server: Apache-Coyote/1.1
+Location: http://data.crossref.org/10.2210%2Fpdb3cap%2Fpdb
+
+HTTP/1.1 404 Not Found
+Date: Mon, 27 Feb 2012 13:58:39 GMT
+
+Unknown DOI
+----
+
+The DOI resolves but the metadata does not. What was more confusing was this
+result which shows that some PDB DOIs *did* resolve.
+
+----
+> curl -D - -L -H   "Accept: application/rdf+xml" "http://dx.doi.org/10.2210/rcsb_pdb/mom_2012_2"
+HTTP/1.1 303 See Other
+Server: Apache-Coyote/1.1
+Location: http://data.crossref.org/10.2210%2Frcsb_pdb%2Fmom_2012_2
+
+HTTP/1.1 200 OK
+Date: Mon, 27 Feb 2012 14:01:18 GMT
+Content-Type: application/rdf+xml
+----
+
+In this case, it is possible to guess who the registration agency was
+(CrossRef) from the location of the RDF metadata, but this is undocumented and
+may not work for all registration agencies. Too much guesswork or specific
+knowledge of the DOI is involved. Thankfully, in this case, Karl Ward of
+CrossRef fixed the problem rapidly and now I can cite both the crystal
+structure of Opsin doi:10.2210/pdb3cap/pdb[] and the Aminoglycoside
+Antibiotics doi:10.2210/rcsb_pdb/mom_2012_2[].
+
+
+== Conclusions
+
+anchor:conclusions[] DOIs are and remain problematic. The addition of content
+negotiation at first sight appears to be a considerable improvement, but it
+usage is more complex than it should be. I offer here three suggestions based
+on my experience:
+
+ - An alternative based on simple HTTP GET URIs should be provided
+ - A standardised metadata schema for all DOIs, or at least a single point of
+   entry to the documentation for all DOIs. 
+ - For a given DOI, there must be a standard mechanism to discover which
+   registration agency is responsible. Without this, it is hard to discover
+   which documentation and which schema applies. 
+
+Despite this, KCite actively uses content negotiation; with it, I have dropped
+the number of HTTP requests I need to make to resolve the metadata for a
+DOI and this is a good thing. It is good to see the system getting more
+usable; I hope that this trend continues. 
+
+anchor:end[]
+

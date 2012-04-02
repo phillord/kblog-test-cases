@@ -1,0 +1,31 @@
+Mathjax with mathML
+===================
+:blogpost-categories: mathjax
+:blogpost-status: published
+
+I don't know if this is supposed to, or will work, so this is just an
+experiment. 
+
+First we switch mathjax on. pass:[[mathjax\]]
+
+Now the quadratic equation. 
+
+pass:[<math display='block'><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mo>&#x2212;</mo><mi>b</mi><mo>&#x00B1;</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>&#x2212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>]
+
+And a second equation using a passthrough block showing e=mc
+
+++++++
+<math>
+    <mrow>
+        <mi>E</mi>
+        <mo>=</mo>
+        <mrow>
+            <mi>m</mi>
+            <msup>
+                <mi>c</mi>
+                <mn>2</mn>
+            </msup>
+        </mrow>
+    </mrow>
+</math>
+++++++

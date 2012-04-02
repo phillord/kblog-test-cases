@@ -1,0 +1,13 @@
+URL Shortcode Test
+==================
+:blogpost-status: published
+:blogpost-categories: kcite
+
+
+This post is designed to test handling of shortcodes with URLs inside, 
+like:
+
+pass:[[cite source="url" author="BBC" title="BBC News" year="2010"\]http://news.bbc.co.uk[/cite\]]
+
+
+pass:[[cite source="url" viewed="2011"\]http://www.raw.com[/cite\]]
