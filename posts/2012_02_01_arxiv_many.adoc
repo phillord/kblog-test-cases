@@ -4,6 +4,8 @@ Longer test for arxiv
 :blogpost-categories: kcite
 
 
+pass:[[mathjax]]
+
 ArXiv: On estimation and selection for topic models pass:[[cite
 source='arxiv'\]1109.4518[/cite\]].
 

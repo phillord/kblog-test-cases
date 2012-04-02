@@ -1,7 +1,7 @@
 Mathjax Test
 ===========
 :blogpost-status: published
-:blogpost-categories: math-test
+:blogpost-categories: math-test,mathjax
 
 Purpose of Test
 ---------------
