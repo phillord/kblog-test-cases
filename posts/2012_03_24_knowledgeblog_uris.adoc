@@ -16,3 +16,8 @@ Bayesian Networking kurl:health.knowledgeblog.org/2011/05/17/bayesian-network-mo
 And another to Crossref kurl:www.crossref.org/CrossTech/2011/10/datacite_supporting_content_ne.html[].
 
 Here is a test kurl:www.russet.org.uk/blog/2011/02/the-problem-with-dois/[]
+
+Automated Assessment of High Throughput Hypotheses on Gene Regulatory Mechanisms Involved in the Gastrin Response
+kurl:bio-ontologies.knowledgeblog.org/252[]. This includes Mikel. 
+
+The EDAM ontology hopefully kurl:bio-ontologies.knowledgeblog.org/224[].

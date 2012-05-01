@@ -1,6 +1,6 @@
 Kblog Metadata
 ==============
-:blogpost-categories: tech
+:blogpost-categories: kcite,exemplars
 :blogpost-status: published
 
 
