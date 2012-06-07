@@ -41,8 +41,9 @@ and another
 pass:[[cite\]10.2210/rcsb_pdb/mom_2012_2[/cite\]]
 End
 
-And some from kblog which break...
-pass:[[cite\]10.4124/A3[/cite\]] = http://ontogenesis.knowledgeblog.org/
-pass:[[cite\]10.4124/A425[/cite\]]
-pass:[[cite\]10.4124/A426[/cite\]]
+// And some from kblog which break...
+// pass:[[cite\]10.4124/A3[/cite\]] = http://ontogenesis.knowledgeblog.org/
+// pass:[[cite\]10.4124/A425[/cite\]]
+// pass:[[cite\]10.4124/A426[/cite\]]
+
 

@@ -12,18 +12,25 @@ pubmed ID.
 // pass:[[cite\]10.1186/1471-2105-8-57[/cite]]
 
 // This one errors at pubmed end
-pass:[[cite source="pubmed"\]21362543[/cite\]]
-pass:[[cite source="pubmed"\]21347273[/cite\]]
+// pass:[[cite source="pubmed"\]21362543[/cite\]]
+// pass:[[cite source="pubmed"\]21347273[/cite\]]
 
 
-This one seems to return null for the title also
-pass:[[cite\]10.1186/gb-2003-4-4-r28[/cite\]]
-Same thing in pubmed. pass:[[cite source="pubmed"\]12702209[/cite\]]
+// This one seems to return null for the title also
+// pass:[[cite\]10.1186/gb-2003-4-4-r28[/cite\]]
+// Same thing in pubmed. pass:[[cite source="pubmed"\]12702209[/cite\]]
 
 
-This one was reported as failing my Carl Boettiger
-pass:[[cite\]10.1126/science.1203698[/cite\]]. 
+// This one was reported as failing my Carl Boettiger
+// pass:[[cite\]10.1126/science.1203698[/cite\]]. 
 
 
-This one is my own reality paper [cite]10.1371/journal.pone.0012258[/cite].
-Currently authors are being shown to include Iddo Friedberg. 
+// This one is my own reality paper [cite]10.1371/journal.pone.0012258[/cite].
+// Currently authors are being shown to include Iddo Friedberg. 
+
+
+
+Does both of these together break things? 
+
+pass:[[cite source="pubmed"\]21266363[/cite\]]
+pass:[[cite source="pubmed"\]21266362[/cite\]]
