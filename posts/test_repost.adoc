@@ -1,0 +1,17 @@
+Test Post
+=========
+:blogpost-status: published
+:blogpost-categories: ping
+
+This content comes from blogpost and asciidoc. If all is working well, it
+should still have the same permalink as the post I created by hand. 
+
+http://yarm.ncl.ac.uk/?page_id=885
+
+First trying to post 
+
+blogpost --post-id=885 --pages --conf-file=../build/local-test-vm.conf
+test_repost.adoc
+
+
+Well, it appears to have worked. 

@@ -1,0 +1,19 @@
+Disambiguation
+==============
+:blogpost-categories: kcite
+:blogpost-status: published
+
+
+This is to test if the disambiguation code is working correctly. Reference to
+kcite,greycite
+kurl:www.russet.org.uk/blog/2012/05/kcite-greycite-and-kblog-metadata/[].
+Semantic studentship
+kurl:www.russet.org.uk/blog/2012/04/semantic-linking-studentship/[]. This is
+discovering
+kurl:www.russet.org.uk/blog/2012/04/discovering-the-registration-agency/[],
+semantics free ontologies
+kurl:www.russet.org.uk/blog/2012/04/semantics-free-ontologies-2/[]. Which
+should be enough. 
+
+
+Enrichment kurl:www.russet.org.uk/blog/2006/02/semantic-enrichment-of-the-literature/[]

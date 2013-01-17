@@ -1,0 +1,17 @@
+Mendeley URIs
+============
+:blogpost-categories: kcite
+:blogpost-status: published
+
+
+This is our first attempt to support Mendeley URIs. This works entirely
+through Greycite and accessing the public metadata in the page. 
+
+This is an article that I haven't read about druggable genomes
+kurl:www.mendeley.com/research/the-druggable-genome/[]. 
+
+And there is a review article which I have read and am indeed an author on 
+kurl:www.mendeley.com/research/semantic-similarity-in-biomedical-ontologies/[].
+
+And my old paper from PSB, which doesn't have a DOI (although does have a
+PubMed ID) kurl:www.mendeley.com/research/semantic-similarity-measures-as-tools-for-exploring-the-gene-ontology[].

@@ -1,0 +1,10 @@
+Test DOIs
+========
+:blogpost-categories: kcite
+:blogpost-status: published
+
+
+Crossref
+
+
++++[cite]http://dx.doi.org/10.1377/hlthaff.25.2.420[/cite]+++

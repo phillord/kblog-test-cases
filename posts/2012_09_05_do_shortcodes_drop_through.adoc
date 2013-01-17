@@ -1,0 +1,14 @@
+Do Shortcodes drop through
+==========================
+:blogpost-status: published
+:blogpost-categories: test,kcite
+
+I am wondering if this pass:[[cite\]http://ontogenesis.knowledgeblog.org/1288[/cite\]]
+drops straight through. What about
++++[cite]http://ontogenesis.knowledgeblog.org/1288[/cite]+++ which might work.
+Or perhaps even $$[cite]http://www.bbc.co.uk/news/health-19202141[/cite]$$.
+
+Actually, all of these do work, which is pretty good. Does this work with
+greycite.el, I wonder this works
+efficient$$[cite]http://blogs.law.harvard.edu/pamphlet/2012/03/06/an-efficient-journal/[/cite]$$. 
+

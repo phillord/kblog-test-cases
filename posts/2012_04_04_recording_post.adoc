@@ -1,0 +1,12 @@
+The Wonders of Metadata
+=======================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+Metadata is a wonderful thing. We can write content here and then post is
+straight-forwardly. We can insert a new reference easily
+kurl:bio-ontologies.knowledgeblog.org/224[]. We might also want to reference
+greycite kurl:www.russet.org.uk/blog/2012/05/greycite-citing-the-web/[],
+kblog-metadata kurl:www.russet.org.uk/blog/2012/03/kblog-metadata/[], or kcite
+kurl:www.russet.org.uk/blog/2012/02/kcite-spreads-its-wings/[]. 
+

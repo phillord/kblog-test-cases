@@ -1,0 +1,28 @@
+Multiple Syntaxes for IDs
+=========================
+:blogpost-status: published
+:blogpost-categories: kcite
+
+Something from every source, for all syntaxes
+
+DOI Citation: In Google we trust.
+
+ - plain DOI [cite]10.3998/3336451.0009.101[/cite]
+ - doi colon DOI [cite]doi:10.3998/3336451.0009.101[/cite]
+ - http DOI pass:[[cite\]http://dx.doi.org/10.3998/3336451.0009.101[/cite\]]
+
+
+
+PubMed Citation: Proteomi analysis of the left ventricle
+
+ - pubmed colon DOI [cite]pubmed:21237295[/cite]
+ - http pubmed pass:[[cite\]http://www.ncbi.nlm.nih.gov/pubmed/21237295[/cite\]]
+
+ArXiv: On estimation and selection for topic models 
+
+ - arxiv colon [cite]arxiv:1109.4518[/cite]
+ - http arxiv pass:[[cite\]http://arxiv.org/abs/1109.4518[/cite\]]
+
+
+This cite should be about Genomic data from Emperor penguin. 
+pass:[[cite\]10.5524/100005[/cite\]]

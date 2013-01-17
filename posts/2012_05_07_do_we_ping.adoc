@@ -1,0 +1,14 @@
+Do We Ping
+==========
+:blogpost-status: published
+:blogpost-categories: ping
+
+Here we link to http://localhost/2012/05/07/the-wonders-of-metadata/ to see if
+we ping it. Yes we do. 
+
+Here we kcite to three steps to see if we ping this
+kurl:localhost/2012/05/02/three-steps/[]. Looks to me like we do. 
+
+
+Here is another internal link a positive control
+http://localhost/2012/05/01/here-is-a-new-post-with-a-modified-container-title/[]. 

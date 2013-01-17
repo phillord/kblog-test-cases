@@ -1,0 +1,16 @@
+Centre Test
+===========
+:blogpost-status: published
+:blogpost-categories: temp
+
+
+I think we just do [big red]*big* to make stuff big. 
+
+++++
+<p style="text-align: center;font-size: 150%">    
+Centered and big
+</p>
+++++
+
+
+Normal again

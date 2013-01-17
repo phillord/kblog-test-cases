@@ -1,0 +1,8 @@
+Kblog Metadata
+==============
+:blogpost-status: unpublished
+:blogpost-posttype: page
+:blogpost-categories: misc
+
+
+KBlog Metadata. 

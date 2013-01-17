@@ -1,0 +1,58 @@
+Table of Contents Category
+==========================
+:blogpost-status: published
+:blogpost-categories: contents
+
+
+This is a test to see if the table of contents plugin is recognising
+categories correctly. 
+
+This short code should expand to all articles about the table of contents. 
+
+pass:[[kblogtoc cat="contents"\]]
+
+This short code should expand to all articles about kcite. 
+
+pass:[[kblogtoc cat="kcite"\]]
+
+
+Does this block the edge case? Unfortunately a short code on the first line is
+also asciidoc syntax, which breaks things. So you have to use a passthrough
+macro which is ugly. Testing to see whether a space at the beginning solves
+this. If so, should see the mathjax category below. 
+
+     [kblogtoc cat="mathjax"]
+
+
+Works, but gets recognised by another syntax. A pass through block. This
+works. 
+
+++++
+[kblogtoc cat="mathjax"]
+++++
+
+
+Without a passthrough, but with a close --- fails because it looks like a style
+//[kblogtoc cat="mathjax"][/kblogtoc]
+
+What about escaping the close:
+[kblogtoc cat="mathjax"\]
+
+No doesn't pass through. Escaping the open?
+
+\[kblogtoc cat="mathjax"]
+
+No. Passes through but escaped in wordpress
+
+What about zwj?
+&zwj;[kblogtoc cat="mathjax"]
+
+Which does work.
+
+What about embedding the short code in other stuff
+
+[kblogtoc cat="mathjax"] so this is on the same line 
+
+So this works as well. 
+
+
