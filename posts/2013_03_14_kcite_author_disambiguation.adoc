@@ -1,0 +1,9 @@
+Does author disambiguation work
+===============================
+:blogpost-categories: kcite
+:blogpost-status: published
+
+kurl:www.russet.org.uk/blog/2327[]
+kurl:www.russet.org.uk/blog/2324[]
+kurl:www.russet.org.uk/blog/2322[]
+kurl:www.russet.org.uk/blog/2316[]
